@@ -7,7 +7,7 @@ class coursesControl {
 
     async init() {
         await this.model.fetchAvailableCourses().then(() => {
-            this.view.renderAvailableCourses(this.model.availableCourses)
+            this.view.renderAvailableCourses(this.model.availableCourses, this.model.selectedCourses)
         } 
         )
     }
