@@ -14,14 +14,33 @@ class coursesView {
             this.availableCoursesList.append(courseItem);
         });
 
-        const footerForm = this.createFooter(selectedCoursesArray);
+        const footerForm = this.createFooter(selectedCoursesArray)[1];
         this.totalCredits.append(footerForm);
     }
 
     renderFooter(selectedCoursesArray) {
-        const footerForm = this.createFooter(selectedCoursesArray);
-        this.totalCredits.replaceChildren(footerForm);
+        const [totalCredit, footerForm] = this.createFooter(selectedCoursesArray);
+        if (totalCredit > 18) {
+            return false;
+        } else {
+            this.totalCredits.replaceChildren(footerForm);
+            return true;
+        }
     }
+
+    renderSelectedCourses(selectedCoursesArray) {
+        if(selectedCoursesArray.length === 0) {
+            this.selectedCoursesList.innerHTML = '';
+        }
+        console.log(selectedCoursesArray);
+        selectedCoursesArray.forEach(course => {
+            this.selectedCoursesList.append(course);
+        });
+
+
+        // this.selectedCoursesList.replaceChildren(selectedCoursesArray);
+    }
+
 
     createCourseItem(course) {
         // set up course class
@@ -59,14 +78,10 @@ class coursesView {
     }
 
     createFooter(selectedCoursesArray) {
-        let totalCredits = 0;
-        totalCredits = selectedCoursesArray.reduce((acc, curr) => {
-            const courseCredit = curr.getAttribute('course-credit');
-            curr = parseInt(courseCredit);
-            return acc + curr;
-        }, 0);
-        const submitCoursesForm = document.createElement('form');
-        submitCoursesForm.classList.add('submit-courses-form');
+        const totalCredits = this.calculateTotalCredits(selectedCoursesArray);
+        
+        const submitCourses = document.createElement('div');
+        submitCourses.classList.add('submit-courses-div');
 
         const showTotalCredits = document.createElement('span');
         showTotalCredits.innerText = `Total Credits: ${totalCredits}`;
@@ -75,9 +90,20 @@ class coursesView {
         submitCoursesBtn.classList.add('submit-courses-btn');
         submitCoursesBtn.innerText = 'Select';
 
-        submitCoursesForm.append(showTotalCredits);
-        submitCoursesForm.append(submitCoursesBtn);
+        submitCourses.append(showTotalCredits);
+        submitCourses.append(submitCoursesBtn);
 
-        return submitCoursesForm;
+        return [totalCredits, submitCourses];
+    }
+
+    calculateTotalCredits(selectedCoursesArray) {
+        let totalCredits = 0;
+        totalCredits = selectedCoursesArray.reduce((acc, curr) => {
+            const courseCredit = curr.getAttribute('course-credit');
+            curr = parseInt(courseCredit);
+            return acc + curr;
+        }, 0);
+
+        return totalCredits;
     }
 }
