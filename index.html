@@ -5,9 +5,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Final Evaluation</title>
+
+    <script src="./FetchData/fetchApis.js"></script>
+    <script defer src="./MVC/model.js"></script>
+    <script defer src="./MVC/view.js"></script>
+    <script defer src="./MVC/control.js"></script>
 </head>
 <body>
-    <!-- input form -->
+    <main class="project-container">
+        <!-- page head -->
+        <header class="page-header">
+            <h1>Class Selection Page</h1>
+        </header>
+
+        <!-- two selection bucket -->
+        <!-- all course bucket -->
+        <section class="all-courses-bucket">
+            <table class="courses-table">
+                <thead class="available-courses-head">
+                    <tr>
+                        <th>Available Courses</th>
+                    </tr>
+                </thead>
+                <tbody class="available-courses-list">
+
+                </tbody>
+            </table>
+        </section>
+
+        <!-- selected course bucket -->
+        <section class="selected-courses-bucket">
+            <table class="selected-table">
+                <thead class="selected-courses-head">
+                    <tr>
+                        <th>Selected Courses</th>
+                    </tr>
+                </thead>
+                <tbody class="selected-courses-list">
+
+                </tbody>
+            </table>
+        </section>
+
+        <!-- page footer (show total credit) -->
+        <footer class="total-credits">
+
+        </footer>
+    </main>
 
 </body>
 </html>
