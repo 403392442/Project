@@ -9,6 +9,7 @@ class coursesControl {
     async init() {
         await this.model.fetchAvailableCourses().then(() => {
             this.view.renderAvailableCourses(this.model.availableCourses, this.model.selectedCourses);
+            this.view.checkOverFlow();
             this.setUpSubmitCourses();
         })
     }
@@ -49,6 +50,10 @@ class coursesControl {
             if (confirmation) {
                 submitBtn.setAttribute('disabled', 'true');
                 this.view.renderSelectedCourses(this.model.selectedCourses);
+                this.model.selectedCourses.forEach(course => {
+                    course.classList.remove('selected');
+                })
+                this.view.checkOverFlow();
             }
         })
     }

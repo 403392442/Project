@@ -1,0 +1,59 @@
+.project-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 50rem;
+    margin: 0 auto;
+}
+
+.bucket-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin: 2.5rem auto;
+}
+
+.all-courses-bucket,
+.selected-courses-bucket {
+    height: 300px;
+    width: 200px;
+}
+
+.overflow {
+    overflow-y: scroll;
+}
+
+.all-courses-bucket {
+    display: flex;
+    flex-direction: column;
+}
+
+.all-courses-bucket,
+.course-item,
+.selected-courses-bucket {
+    border: 1px solid black;
+}
+
+.course-item:nth-child(2n) {
+    background-color: rgb(221, 239, 221);
+}
+
+.selected {
+    background-color: rgb(78, 155, 243) !important;
+}
+
+li {
+    list-style: none;
+    font-size: 1.2rem;
+}
+
+.available-courses-head,
+.selected-courses-head {
+    padding: 1rem 0;
+}
+
+.submit-courses-btn {
+    margin-left: 1rem;
+}
+
+

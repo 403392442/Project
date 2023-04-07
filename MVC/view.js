@@ -7,8 +7,6 @@ class coursesView {
 
     renderAvailableCourses(allCoursesArray, selectedCoursesArray) {
 
-        console.log(allCoursesArray)
-
         allCoursesArray.forEach(course => {
             const courseItem = this.createCourseItem(course);
             this.availableCoursesList.append(courseItem);
@@ -32,13 +30,10 @@ class coursesView {
         if(selectedCoursesArray.length === 0) {
             this.selectedCoursesList.innerHTML = '';
         }
-        console.log(selectedCoursesArray);
         selectedCoursesArray.forEach(course => {
             this.selectedCoursesList.append(course);
         });
 
-
-        // this.selectedCoursesList.replaceChildren(selectedCoursesArray);
     }
 
 
@@ -79,7 +74,7 @@ class coursesView {
 
     createFooter(selectedCoursesArray) {
         const totalCredits = this.calculateTotalCredits(selectedCoursesArray);
-        
+
         const submitCourses = document.createElement('div');
         submitCourses.classList.add('submit-courses-div');
 
@@ -105,5 +100,27 @@ class coursesView {
         }, 0);
 
         return totalCredits;
+    }
+
+    checkOverFlow() {
+        const allCoursesBucket = document.querySelector('.all-courses-bucket');
+        const selectedCoursesBucket = document.querySelector('.selected-courses-bucket');
+        const availableCoursesHead = document.querySelector('.available-courses-head');
+        const selectedCoursesHead = document.querySelector('.selected-courses-head');
+        const availableCoursesList = document.querySelector('.available-courses-list');
+        const selectedCoursesList = document.querySelector('.selected-courses-list');
+
+        if(availableCoursesList.offsetHeight + availableCoursesHead.offsetHeight > 300) {
+            allCoursesBucket.classList.add('overflow');
+        } else {
+            allCoursesBucket.classList.remove('overflow');
+        }
+
+        if(selectedCoursesList.offsetHeight + selectedCoursesHead.offsetHeight > 300) {
+            console.log(2)
+            selectedCoursesBucket.classList.add('overflow');
+        } else {
+            selectedCoursesBucket.classList.remove('overflow');
+        }
     }
 }
