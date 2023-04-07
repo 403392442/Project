@@ -14,8 +14,13 @@ class coursesView {
             this.availableCoursesList.append(courseItem);
         });
 
-        const footerForm = this.renderFooter(selectedCoursesArray);
+        const footerForm = this.createFooter(selectedCoursesArray);
         this.totalCredits.append(footerForm);
+    }
+
+    renderFooter(selectedCoursesArray) {
+        const footerForm = this.createFooter(selectedCoursesArray);
+        this.totalCredits.replaceChildren(footerForm);
     }
 
     createCourseItem(course) {
@@ -53,12 +58,13 @@ class coursesView {
         return courseItem;
     }
 
-    renderFooter(selectedCoursesArray) {
+    createFooter(selectedCoursesArray) {
         let totalCredits = 0;
         totalCredits = selectedCoursesArray.reduce((acc, curr) => {
+            const courseCredit = curr.getAttribute('course-credit');
+            curr = parseInt(courseCredit);
             return acc + curr;
         }, 0);
-        console.log(totalCredits);
         const submitCoursesForm = document.createElement('form');
         submitCoursesForm.classList.add('submit-courses-form');
 
