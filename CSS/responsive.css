@@ -1,0 +1,18 @@
+@media (max-width: 399px) {
+    .bucket-container {
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .all-courses-bucket,
+    .selected-courses-bucket {
+        height: 100%;
+        width: 100%;
+        margin: 1rem 0;
+    }
+
+
+}
